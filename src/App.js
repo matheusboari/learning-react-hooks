@@ -1,9 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-// import { Container } from './styles';
+function App() {
+  const [techs, setTech] = useState(['ReactJS', 'React Native']);
+  const [newTech, setNewTech] = useState('');
 
-export default class App extends Component {
-  render() {
-    return <div />;
+  function handleAdd() {
+    setTech([...techs, newTech]);
+    setNewTech('');
   }
+
+  return (
+    <>
+      <ul>
+        {techs.map(tech => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+      <input
+        value={newTech}
+        type="text"
+        onChange={e => setNewTech(e.target.value)}
+      />
+      <button type="button" onClick={handleAdd}>
+        Adicionar
+      </button>
+    </>
+  );
 }
+
+export default App;
